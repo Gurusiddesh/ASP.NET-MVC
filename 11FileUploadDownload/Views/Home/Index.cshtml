@@ -1,0 +1,36 @@
+﻿@model IEnumerable<_11FileUploadDownload.Models.FileInformation>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("Create", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="somefile" />
+    <br />
+    <input type="submit" value="Upload" />
+}
+
+<table>
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Filename</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.FileName</td>
+                <td>
+                    <a href="@Url.Action("DownloadFile","Home", new { id=item.Id},null)">Download File</a>
+                    <a href="@Url.Action("DeleteFile","Home", new { id=item.Id},null)">Delete File</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

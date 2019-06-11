@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Save", "home",FormMethod.Post))
+{
+    @Html.Label("Enter Your Name:")
+    @Html.TextBox("Name")
+    <br />
+    @Html.Label("Gender:")
+
+@Html.Label("Male:") @Html.RadioButton("gender","male") @Html.Label("Female:") @Html.RadioButton("gender","female")
+        <br />
+    @Html.Label("About Yourself")
+    @Html.TextArea("About")
+    <br />
+    
+    <input type="submit" value="Submit" name="Submit" />
+
+}
+

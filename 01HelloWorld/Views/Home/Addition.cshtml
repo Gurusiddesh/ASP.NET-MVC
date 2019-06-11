@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Addition</title>
+</head>
+<body>
+    <div>
+        <form action="/home/addition" method="post">
+            <label> Enter the First Number: </label>
+            <input type="number" name="fnum" value="" />
+            <br />  
+
+            <label> Enter Second Number:</label>
+            <input type="number" name="snum" value="" />
+            <br />
+
+            <input type="submit" name="name" value="Add" />
+        </form>
+        <h1>The PTR of Two Number is : @Model</h1>
+    </div>
+</body>
+</html>

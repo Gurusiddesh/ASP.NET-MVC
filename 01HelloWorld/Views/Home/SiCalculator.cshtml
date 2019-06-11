@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SiCalculator</title>
+</head>
+<body>
+    <div> 
+        <form action="/home/sicalculator" method="post">
+            <label> Enter Principle Amount</label>
+            <input type="number" name="pnum" value="" />
+            <br />
+            <label> Enter Time </label>
+            <input type="number" name="time" value="" />
+            <br />
+            <label> Enter Rate Of Interest</label>
+            <input type="number" name="roi" value="" />
+            <br />
+            <input type="submit" name="name" value="CalculateSI" />
+        </form>
+        <h1>The Simple Interest is :@Model</h1>
+    </div>
+</body>
+</html>

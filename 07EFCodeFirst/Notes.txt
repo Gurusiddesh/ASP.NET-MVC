@@ -1,0 +1,10 @@
+﻿Add entity Framework to Project. This framework by default will not be added.
+Add connection string in web.config after configSection.
+Add DbContext Class in Models folder.(name from connection string ).
+Add the Model(POCO Class) class in Models folder
+Add a model property in the DbContext Class
+
+Entity Framework Code First
+1.Enable-Migrations							--Excute only once
+2.Add-Migration name(meaningfull name)		--Execute whenever the model changes
+3.Update Database							--Execute whenever the model changes
