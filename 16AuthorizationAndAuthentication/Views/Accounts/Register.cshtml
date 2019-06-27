@@ -1,0 +1,55 @@
+﻿@model _16AuthorizationAndAuthentication.Models.AppUser
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+@using (Html.BeginForm("Register", "Accounts", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.Name, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(x => x.Name, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Email, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(x => x.Email, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Password, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.ConfirmPassword, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Roles, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(x => x.Roles, new List<SelectListItem>
+       {
+           new SelectListItem{ Text="Admin", Value="Admin" },
+           new SelectListItem{ Text="Teacher", Value="Teacher" },
+           new SelectListItem{ Text="Student", Value="Student" },
+       }, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Roles, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <input type="submit" value="Register" />
+}

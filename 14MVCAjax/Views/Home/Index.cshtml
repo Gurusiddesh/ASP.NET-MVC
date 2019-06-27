@@ -1,0 +1,65 @@
+﻿@model  _14MVCAjax.Models.Student
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@Ajax.ActionLink("Get Current Date and Time", "GetDate", "Home", new AjaxOptions
+{
+    HttpMethod = "Get",
+    UpdateTargetId = "result",
+    InsertionMode = InsertionMode.Replace,
+    LoadingElementId = "loader",
+    OnBegin = "OnBegin",
+    OnComplete = "OnComplete",
+    OnFailure = "OnFailure",
+    OnSuccess = "OnSuccess"
+})
+<div id="result">
+    @*@Html.Action("GetDate", "Home");*@
+</div>
+@using (Ajax.BeginForm("SaveStudentDetails", "Home", new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "result",
+    InsertionMode = InsertionMode.InsertAfter,
+    LoadingElementId = "loader",
+    OnBegin = "OnBegin",
+    OnComplete = "OnComplete",
+    OnFailure = "OnFailure",
+    OnSuccess = "OnSuccess"
+}))
+
+{
+    
+    @Html.LabelFor(x => x.Name)
+    @Html.TextBoxFor(x => x.Name)
+    <br />
+
+    @Html.LabelFor(x => x.Age)
+    @Html.TextBoxFor(x => x.Age)
+    <br />
+
+    <input type="submit" value="Save" />
+}
+
+<div id="result1">
+    @*@Html.Action("GetDate", "Home");*@
+</div>
+
+
+<div id="loader" style="display:none">
+    <img src="https://media.giphy.com/media/jAYUbVXgESSti/giphy.gif" alt="Alternate Text" />
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        function OnBegin() { alert("onbegin invoked"); }
+        function OnComplete() { alert("OnComplete invoked"); }
+        function OnFailure() { alert("OnFailure invoked"); }
+        function OnSuccess() { alert("OnSuccess invoked"); }
+    </script>
+}
+

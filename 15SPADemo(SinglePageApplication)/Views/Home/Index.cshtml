@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="container">
+    <!--Form section begins-->
+    <section class="row">
+        <div class="col-md-6">
+            <h4>Create</h4>
+            <div class="form-horizontal">
+                <div class="form-group row">
+                    <label class="col-md-3">Name : </label>
+                    <div class="col-md-9">
+                        <input type="text" id="name" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3">Age : </label>
+                    <div class="col-md-9">
+                        <input type="text" id="age" class="form-control" />
+                    </div>
+                </div>
+
+                <input type="text" id="employee-id" style="display:none;" />
+
+                <button class="btn btn-primary" type="button" id="create-btn">Create</button>
+                <button class="btn btn-primary" type="button" id="update-btn">Update</button>
+                <button class="btn btn-default" type="button" id="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </section>
+    <!--Form section ends-->
+    <!--Loader section begins-->
+    <section class="row" id="loader" style="display:none">
+        <img src="https://media.giphy.com/media/jAYUbVXgESSti/giphy.gif" alt="Alternate Text" style="height:50px;width:50px;" />
+    </section>
+    <!--Loader section ends-->
+    <!--Table section begins-->
+    <section class="row">
+        <div class="col-md-6">
+            <h4>List of employees</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="employee-tablebody">
+                    <tr>
+                        <td>No Records</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <!--Table section ends-->
+</div>
+
+@section scripts{
+    <script src="~/Scripts/app.js"></script>
+}
+
+
+
+

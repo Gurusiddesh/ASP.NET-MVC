@@ -1,23 +1,117 @@
-﻿@model IEnumerable<_07EFCodeFirst.Models.Student>
+﻿
+@using PagedList.Mvc;
+@model PagedList.IPagedList<_07EFCodeFirst.Models.Student>
+
+
+
+
+
+@*@model IEnumerable<_07EFCodeFirst.Models.Student>*@
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-@Html.ActionLink("Create", "Create", "Home", null, new {@class="btn btn-info"})
-<table class="table table-bordered table-striped table-hover" >
+@Html.ActionLink("Create", "Create", "Home", null, new { @class = "btn btn-info" })
+
+<div class="row">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <div class="form-group col-md-10">
+            @Html.Label("enter the name: ", new { @class = "control-label col-md-3" })
+            @Html.TextBox("SearchString", null, new { @class = "form-control col-md-6" })
+
+            <input type="submit" value="Search" />
+        </div>
+    }
+</div>
+
+
+<table class="table table-bordered table-striped table-hover">
+    @*<thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>City</th>
+                <th>Actions</th>
+            </tr>
+        </thead>*@
+
+
     <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>City</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+            <th>
+                @Html.ActionLink("Name", "Index", "Home",
+    new
+         {
+             sortOrder = ViewBag.NameSort,
+             SearchString = ViewBag.SearchString,
+    page = ViewBag.Page
+               }, new { })
+                @if (ViewBag.CurrentSortOrder == "name_asc")
+                {
+                    <span class="glyphicon glyphicon-arrow-up"></span>
+                }
+                else if (ViewBag.CurrentSortOrder == "name_dsc")
+                {
+                    <span class="glyphicon glyphicon-arrow-down"></span>
+                }
+                else
+                {
+                    <span></span>
+                }
+            </th>
+            <th>
+                @Html.ActionLink("Age", "Index", "Home",
+              new
+                   {
+                       sortOrder = ViewBag.AgeSort,
+                       SearchString = ViewBag.SearchString,
+    page = ViewBag.Page
+               }, new { })              @if (ViewBag.CurrentSortOrder == "Age_asc")
+                {
+                    <span class="glyphicon glyphicon-arrow-up"></span>
+                }
+                else if (ViewBag.CurrentSortOrder == "Age_dsc")
+                {
+                    <span class="glyphicon glyphicon-arrow-down"></span>
+                }
+                else
+                {
+                    <span></span>
+                }
+        </th>
+
+        <th>
+            @Html.ActionLink("City", "Index", "Home",
+        new
+             {
+                 sortOrder = ViewBag.CitySort,
+                 SearchString = ViewBag.SearchString,
+page = ViewBag.Page
+           }, new { })
+            @if (ViewBag.CurrentSortOrder == "City_asc")
+            {
+                <span class="glyphicon glyphicon-arrow-up"></span>
+            }
+            else if (ViewBag.CurrentSortOrder == "City_dsc")
+            {
+                <span class="glyphicon glyphicon-arrow-down"></span>
+            }
+            else
+            {
+                <span></span>
+            }
+        </th>
+        <th>Action</th>
+    </tr>
+</thead>
+
+<tbody>
+    @foreach (var item in Model)
+    {
         <tr>
             <td>@item.Id</td>
             <td>@item.Name</td>
@@ -28,7 +122,19 @@
                 @Html.ActionLink("Delete", "Delete", "Home", new { Id = item.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>
-        }
-    </tbody>
+    }
+</tbody>
 </table>
+
+
+<div>
+    page@(Model.PageCount < Model.PageNumber ? 0 : Model.PageCount)
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", "Home",
+    new { page, SearchString = ViewBag.SearchString, sortOrder = ViewBag.CurrentSortOrder }
+    ))
+</div>
+
+
+
 
